@@ -36,7 +36,7 @@ const Header = () => {
         <div
           className={clsx(
             "main rounded-xl backdrop-blur-md border border-line p-3 transition-all duration-200",
-            isOpen ? "bg-background shadow-2xl" : "bg-background/20"
+            isOpen ? "bg-background shadow-2xl" : "bg-secondary/50"
           )}
         >
           <nav className="grid grid-cols-3 items-center">
@@ -62,44 +62,43 @@ const Header = () => {
                 </button>
               </Link>
             </div>
-              <div
-                onClick={toggleMenu}
-                className="lg:hidden cursor-pointer ml-auto h-10 w-10 flex items-center justify-center"
-              >
-                {isOpen ? <X /> : <Menu />}
-              </div>
+            <div
+              onClick={toggleMenu}
+              className="lg:hidden cursor-pointer ml-auto h-10 w-10 flex items-center justify-center"
+            >
+              {isOpen ? <X /> : <Menu />}
+            </div>
           </nav>
 
           <AnimatePresence>
             {isOpen && (
               <>
-              <motion.ul
-                initial={{ opacity: 0, y: -40 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -40 }}
-                className="block space-y-4 my-4 lg:hidden z-50"
-              >
-                {menuItems.map((x, y) => (
-                  <li key={y} onClick={toggleMenu}>
-                    <a
-                      href={x.path}
-                      className="block hover:bg-secondary p-2 text-center rounded-md"
-                    >
-                      {x.name}
-                    </a>
-                  </li>
-                ))}
-              </motion.ul>
-              <Link to="/login">
-                <button className="btn btn-primary h-10 w-full rounded-md">
-                  Make Order
-                </button>
-              </Link>
+                <motion.div
+                  initial={{ opacity: 0, y: -40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -40 }}
+                >
+                  <ul className="block space-y-4 my-4 lg:hidden z-50">
+                    {menuItems.map((x, y) => (
+                      <li key={y} onClick={toggleMenu}>
+                        <a
+                          href={x.path}
+                          className="block hover:bg-secondary p-2 text-center rounded-md"
+                        >
+                          {x.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link to="/login">
+                    <button className="btn btn-primary h-10 w-full rounded-md">
+                      Make Order
+                    </button>
+                  </Link>
+                </motion.div>
               </>
             )}
           </AnimatePresence>
-
-          
         </div>
       </header>
     </>
