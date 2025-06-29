@@ -26,6 +26,7 @@ const Header = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            onClick={toggleMenu}
             className="fixed inset-0 bg-black/80 z-40"
           />
         )}
@@ -71,11 +72,12 @@ const Header = () => {
 
           <AnimatePresence>
             {isOpen && (
+              <>
               <motion.ul
                 initial={{ opacity: 0, y: -40 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -40 }}
-                className="block space-y-4 mt-4 lg:hidden z-50"
+                className="block space-y-4 my-4 lg:hidden z-50"
               >
                 {menuItems.map((x, y) => (
                   <li key={y} onClick={toggleMenu}>
@@ -88,8 +90,16 @@ const Header = () => {
                   </li>
                 ))}
               </motion.ul>
+              <Link to="/login">
+                <button className="btn btn-primary h-10 w-full rounded-md">
+                  Make Order
+                </button>
+              </Link>
+              </>
             )}
           </AnimatePresence>
+
+          
         </div>
       </header>
     </>
